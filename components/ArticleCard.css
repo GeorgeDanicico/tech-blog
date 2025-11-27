@@ -1,0 +1,56 @@
+.article {
+  height: 100%;
+}
+
+.article-card {
+  height: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--outline);
+  background: rgba(3, 7, 18, 0.65);
+  box-shadow: var(--shadow-elevated);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+}
+
+.card-visual {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--outline-strong);
+  padding: 18px;
+  background: linear-gradient(135deg, rgba(0, 220, 130, 0.35), rgba(20, 184, 166, 0.35));
+  color: var(--text-strong);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.card-description {
+  margin: 0 auto;
+}
+
+.card-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card-meta {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.card-button {
+  align-self: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--outline);
+  min-width: 170px;
+}
