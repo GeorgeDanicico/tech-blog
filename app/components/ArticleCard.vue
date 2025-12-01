@@ -47,4 +47,4 @@ const formattedDate = computed(() =>
   </article>
 </template>
 
-<style scoped src="ArticleCard.css"></style>
+<style scoped src="./ArticleCard.css"></style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useArticles } from '~~/composables/useArticles'
+import { useArticles } from '~/composables/useArticles'
 
 const { articles } = useArticles()
 

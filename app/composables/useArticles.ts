@@ -1,4 +1,4 @@
-import type { Article } from '../lib/types'
+import type { Article } from '~/lib/types'
 
 const articles = [
   {
