@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" rx="28" fill="#050f1f" />
+  <rect x="42" y="60" width="1116" height="510" rx="22" fill="url(#paint0_linear)" stroke="#0f213f" stroke-width="2" />
+  <path d="M140 188h920" stroke="#103557" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 14" />
+  <path d="M196 252h808" stroke="#103557" stroke-width="3" stroke-linecap="round" stroke-dasharray="12 10" />
+  <path d="M140 316h920" stroke="#103557" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 12" />
+  <path d="M196 380h808" stroke="#103557" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 14" />
+  <path d="M140 444h920" stroke="#103557" stroke-width="3" stroke-linecap="round" stroke-dasharray="12 10" />
+  <rect x="214" y="142" width="138" height="48" rx="14" fill="#00dc82" opacity="0.12" stroke="#00dc82" />
+  <rect x="214" y="206" width="188" height="48" rx="14" fill="#1abcfe" opacity="0.12" stroke="#1abcfe" />
+  <rect x="214" y="270" width="156" height="48" rx="14" fill="#00dc82" opacity="0.12" stroke="#00dc82" />
+  <rect x="214" y="334" width="210" height="48" rx="14" fill="#1abcfe" opacity="0.12" stroke="#1abcfe" />
+  <rect x="214" y="398" width="172" height="48" rx="14" fill="#00dc82" opacity="0.12" stroke="#00dc82" />
+  <rect x="214" y="462" width="200" height="48" rx="14" fill="#1abcfe" opacity="0.12" stroke="#1abcfe" />
+  <rect x="948" y="142" width="138" height="48" rx="14" fill="#1abcfe" opacity="0.12" stroke="#1abcfe" />
+  <rect x="898" y="206" width="188" height="48" rx="14" fill="#00dc82" opacity="0.12" stroke="#00dc82" />
+  <rect x="932" y="270" width="156" height="48" rx="14" fill="#1abcfe" opacity="0.12" stroke="#1abcfe" />
+  <rect x="872" y="334" width="210" height="48" rx="14" fill="#00dc82" opacity="0.12" stroke="#00dc82" />
+  <rect x="912" y="398" width="172" height="48" rx="14" fill="#1abcfe" opacity="0.12" stroke="#1abcfe" />
+  <rect x="884" y="462" width="200" height="48" rx="14" fill="#00dc82" opacity="0.12" stroke="#00dc82" />
+  <circle cx="600" cy="116" r="64" fill="url(#paint1_radial)" />
+  <rect x="508" y="182" width="184" height="42" rx="12" fill="#0c2342" stroke="#123a63" />
+  <rect x="508" y="246" width="260" height="42" rx="12" fill="#0c2342" stroke="#123a63" />
+  <rect x="508" y="310" width="210" height="42" rx="12" fill="#0c2342" stroke="#123a63" />
+  <rect x="508" y="374" width="260" height="42" rx="12" fill="#0c2342" stroke="#123a63" />
+  <rect x="508" y="438" width="200" height="42" rx="12" fill="#0c2342" stroke="#123a63" />
+  <defs>
+    <linearGradient id="paint0_linear" x1="42" y1="60" x2="976" y2="602" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08192f" />
+      <stop offset="1" stop-color="#0a2241" />
+    </linearGradient>
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(560 96) rotate(36) scale(140 126)">
+      <stop stop-color="#00dc82" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#050f1f" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+</svg>

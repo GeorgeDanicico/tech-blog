@@ -61,7 +61,7 @@ type WorkExperience = {
 
 const experiences: WorkExperience[] = [
   {
-    company: 'Betfair',
+    company: 'Betfair Romania Development',
     role: 'Software Engineer',
     years: '2023 — Present',
     logo: '/images/logos/betfair.png',

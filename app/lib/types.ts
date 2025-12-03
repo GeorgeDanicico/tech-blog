@@ -6,3 +6,12 @@ export type Article = {
   publishedAt: string
   readTime: string
 }
+
+export type BlogPostPreview = {
+  slug: string
+  title: string
+  description: string
+  date: string
+  readTime: string
+  image: string
+}
