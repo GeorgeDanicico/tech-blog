@@ -149,15 +149,15 @@
   width: min(620px, 100%);
   padding: 12px;
   border-radius: var(--radius-md);
-  border: 1px solid var(--outline);
+  /* border: 1px solid var(--outline); */
   background: linear-gradient(135deg, rgba(0, 220, 130, 0.12), rgba(26, 188, 254, 0.1));
   box-shadow: var(--shadow-elevated);
   position: relative;
 }
 
-:deep(.search-input) {
+/* :deep(.search-input) {
   width: 100%;
-}
+} */
 
 .search-helper {
   margin: 0;

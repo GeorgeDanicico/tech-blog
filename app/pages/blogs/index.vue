@@ -82,16 +82,12 @@ watch(
             <p class="list-label">Latest entries</p>
             <p class="range-label">{{ rangeLabel }}</p>
           </div>
-          <div class="search-wrap">
-            <UInput
-              v-model="query"
-              icon="i-lucide-search"
-              placeholder="Search by title"
-              size="lg"
-            />
-            <p class="search-helper">{{ resultsLabel }}</p>
-            <span class="search-hint">Type to filter titles</span>
-          </div>
+          <UInput
+            v-model="query"
+            icon="i-lucide-search"
+            placeholder="Search by title"
+            size="lg"
+          />
         </div>
 
         <div class="posts-list" aria-live="polite">
