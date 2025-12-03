@@ -6,12 +6,12 @@ const socialLinks = [
   { label: 'Instagram', href: 'https://www.instagram.com/georgedanicico/', icon: 'mdi:instagram' }
 ] as const
 
-useSeoMeta({
-  title: 'Home | Tech Blog',
-  description: 'A concise introduction with a portrait and social links.',
-  ogTitle: 'Home | Tech Blog',
-  ogDescription: 'A concise introduction with a portrait and social links.'
-})
+// useSeoMeta({
+//   title: 'Home | Tech Blog',
+//   description: 'A concise introduction with a portrait and social links.',
+//   ogTitle: 'Home | Tech Blog',
+//   ogDescription: 'A concise introduction with a portrait and social links.'
+// })
 </script>
 
 <template>

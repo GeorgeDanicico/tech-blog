@@ -97,13 +97,13 @@ const experiences: WorkExperience[] = [
   }
 ] satisfies WorkExperience[]
 
-useSeoMeta({
-  title: 'About | Tech Blog',
-  description: 'Meet George, a full stack engineer sharing lessons from Java, Spring Boot, and front-end explorations.',
-  ogTitle: 'About | Tech Blog',
-  ogDescription:
-    'Meet George, a full stack engineer sharing lessons from Java, Spring Boot, and front-end explorations.'
-})
+// useSeoMeta({
+//   title: 'About | Tech Blog',
+//   description: 'Meet George, a full stack engineer sharing lessons from Java, Spring Boot, and front-end explorations.',
+//   ogTitle: 'About | Tech Blog',
+//   ogDescription:
+//     'Meet George, a full stack engineer sharing lessons from Java, Spring Boot, and front-end explorations.'
+// })
 </script>
 
 <style scoped src="./about.css"></style>

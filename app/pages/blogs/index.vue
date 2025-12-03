@@ -55,12 +55,12 @@ watch(
   }
 )
 
-useSeoMeta({
-  title: 'Blogs | Tech Blog',
-  description: 'Browse technical posts with compact previews, search, and pagination.',
-  ogTitle: 'Blogs | Tech Blog',
-  ogDescription: 'Browse technical posts with compact previews, search, and pagination.'
-})
+// useSeoMeta({
+//   title: 'Blogs | Tech Blog',
+//   description: 'Browse technical posts with compact previews, search, and pagination.',
+//   ogTitle: 'Blogs | Tech Blog',
+//   ogDescription: 'Browse technical posts with compact previews, search, and pagination.'
+// })
 </script>
 
 <template>
@@ -85,11 +85,9 @@ useSeoMeta({
           <div class="search-wrap">
             <UInput
               v-model="query"
+              icon="i-lucide-search"
               placeholder="Search by title"
               size="lg"
-              clearable
-              icon="i-heroicons-magnifying-glass-20-solid"
-              class="search-input"
             />
             <p class="search-helper">{{ resultsLabel }}</p>
             <span class="search-hint">Type to filter titles</span>
