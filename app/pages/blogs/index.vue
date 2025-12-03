@@ -92,6 +92,7 @@ useSeoMeta({
               class="search-input"
             />
             <p class="search-helper">{{ resultsLabel }}</p>
+            <span class="search-hint">Type to filter titles</span>
           </div>
         </div>
 
