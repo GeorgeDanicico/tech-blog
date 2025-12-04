@@ -185,12 +185,6 @@ public class ImageController {
 </template>
 
 <script setup lang="ts">
-useSeoMeta({
-  title: 'Spring Boot image streaming mock | Tech Blog',
-  description: 'Mock walkthrough for streaming images from Spring Boot with byte ranges, caching, and chunked responses.',
-  ogTitle: 'Spring Boot image streaming mock | Tech Blog',
-  ogDescription: 'Mock walkthrough for streaming images from Spring Boot with byte ranges, caching, and chunked responses.'
-})
 
 const checklist = [
   'Java 21',

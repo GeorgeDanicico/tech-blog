@@ -113,13 +113,6 @@ watch(
     page.value = 1
   }
 )
-
-useSeoMeta({
-  title: 'Blogs | Tech Blog',
-  description: 'Technical blogs about Software Engineering',
-  ogTitle: 'Blogs | Tech Blog',
-  ogDescription: 'Technical blogs about Software Engineering'
-})
 </script>
 
 <style scoped src="./index.css"></style>
