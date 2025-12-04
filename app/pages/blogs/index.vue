@@ -67,11 +67,7 @@ watch(
   <div class="blogs-page">
     <section class="blogs-hero">
       <UContainer class="hero-card">
-        <span class="badge-accent">Technical blogs</span>
-        <h1 class="title-lg">Technical blogs worth bookmarking.</h1>
-        <p>
-          A calm index of posts with titles, dates, tiny cover images, and quick read-time badges.
-        </p>
+        <h2 class="title-lg">Technical blogs I document to learn more.</h2>
       </UContainer>
     </section>
 
