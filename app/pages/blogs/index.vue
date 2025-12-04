@@ -1,68 +1,3 @@
-<script setup lang="ts">
-import { computed, ref, watch, watchEffect } from 'vue'
-
-import BlogListItem from '~/components/BlogListItem.vue'
-import { useBlogPosts } from '~/composables/useBlogPosts'
-
-const { posts } = useBlogPosts()
-
-const page = ref(1)
-const pageSize = 5
-const query = ref('')
-
-const filteredPosts = computed(() => {
-  const term = query.value.trim().toLowerCase()
-  if (!term) {
-    return posts.value
-  }
-
-  return posts.value.filter((post) => post.title.toLowerCase().includes(term))
-})
-
-const totalPages = computed(() => Math.max(1, Math.ceil(filteredPosts.value.length / pageSize)))
-const paginatedPosts = computed(() => {
-  const start = (page.value - 1) * pageSize
-  return filteredPosts.value.slice(start, start + pageSize)
-})
-
-const rangeStart = computed(() => (filteredPosts.value.length === 0 ? 0 : (page.value - 1) * pageSize + 1))
-const rangeEnd = computed(() => Math.min(page.value * pageSize, filteredPosts.value.length))
-const rangeLabel = computed(() => {
-  if (filteredPosts.value.length === 0) {
-    return 'No posts match your search.'
-  }
-  return `Showing ${rangeStart.value}-${rangeEnd.value} of ${filteredPosts.value.length}`
-})
-
-const resultsLabel = computed(() => {
-  const count = filteredPosts.value.length
-  return `${count} ${count === 1 ? 'post' : 'posts'}`
-})
-
-watchEffect(() => {
-  if (page.value > totalPages.value) {
-    page.value = totalPages.value
-  }
-  if (page.value < 1) {
-    page.value = 1
-  }
-})
-
-watch(
-  () => query.value,
-  () => {
-    page.value = 1
-  }
-)
-
-// useSeoMeta({
-//   title: 'Blogs | Tech Blog',
-//   description: 'Browse technical posts with compact previews, search, and pagination.',
-//   ogTitle: 'Blogs | Tech Blog',
-//   ogDescription: 'Browse technical posts with compact previews, search, and pagination.'
-// })
-</script>
-
 <template>
   <div class="blogs-page">
     <section class="blogs-hero">
@@ -121,5 +56,70 @@ watch(
     </section>
   </div>
 </template>
+
+<script setup lang="ts">
+import { computed, ref, watch, watchEffect } from 'vue'
+
+import BlogListItem from '~/components/BlogListItem.vue'
+import { useBlogPosts } from '~/composables/useBlogPosts'
+
+const { posts } = useBlogPosts()
+
+const page = ref(1)
+const pageSize = 5
+const query = ref('')
+
+const filteredPosts = computed(() => {
+  const term = query.value.trim().toLowerCase()
+  if (!term) {
+    return posts.value
+  }
+
+  return posts.value.filter((post) => post.title.toLowerCase().includes(term))
+})
+
+const totalPages = computed(() => Math.max(1, Math.ceil(filteredPosts.value.length / pageSize)))
+const paginatedPosts = computed(() => {
+  const start = (page.value - 1) * pageSize
+  return filteredPosts.value.slice(start, start + pageSize)
+})
+
+const rangeStart = computed(() => (filteredPosts.value.length === 0 ? 0 : (page.value - 1) * pageSize + 1))
+const rangeEnd = computed(() => Math.min(page.value * pageSize, filteredPosts.value.length))
+const rangeLabel = computed(() => {
+  if (filteredPosts.value.length === 0) {
+    return 'No posts match your search.'
+  }
+  return `Showing ${rangeStart.value}-${rangeEnd.value} of ${filteredPosts.value.length}`
+})
+
+const resultsLabel = computed(() => {
+  const count = filteredPosts.value.length
+  return `${count} ${count === 1 ? 'post' : 'posts'}`
+})
+
+watchEffect(() => {
+  if (page.value > totalPages.value) {
+    page.value = totalPages.value
+  }
+  if (page.value < 1) {
+    page.value = 1
+  }
+})
+
+watch(
+  () => query.value,
+  () => {
+    page.value = 1
+  }
+)
+
+useSeoMeta({
+  title: 'Blogs | Tech Blog',
+  description: 'Technical blogs about Software Engineering',
+  ogTitle: 'Blogs | Tech Blog',
+  ogDescription: 'Technical blogs about Software Engineering'
+})
+</script>
 
 <style scoped src="./index.css"></style>

@@ -31,9 +31,8 @@ const formattedDate = computed(() =>
 
       <div class="blog-item__content">
         <header class="blog-item__header">
-          <p class="blog-item__meta">{{ formattedDate }}</p>
-          <span aria-hidden="true" class="blog-item__dot" />
-          <p class="blog-item__meta">{{ post.readTime }}</p>
+          <span>{{ formattedDate }}</span>
+          <span>{{ post.readTime }}</span>
         </header>
 
         <h3 class="blog-item__title">

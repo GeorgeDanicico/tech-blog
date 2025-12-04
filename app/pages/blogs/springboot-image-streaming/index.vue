@@ -9,7 +9,7 @@
 
         <div class="meta-row">
           <span class="pill">Published: 4 Dec 2025</span>
-          <span class="pill">6 min read</span>
+          <span class="pill">3 min read</span>
         </div>
       </header>
 
@@ -27,6 +27,17 @@
         </p>
 
         <p>You can add any image you want and we'll stream this image chunk by chunk</p>
+
+        <figure class="image-preview">
+          <NuxtImg
+            src="/images/blogs/knight.png"
+            alt="Knight illustration used for the streaming demo"
+            width="960"
+            height="640"
+            class="image-preview__img"
+          />
+          <figcaption>The demo will stream this PNG progressively so you can watch it render in place.</figcaption>
+        </figure>
       </section>
 
       <section class="card">
@@ -78,70 +89,95 @@ public class ImageController {
       <section class="card">
         <h2>Our frontend</h2>
         <p>
-          We will create now a simple html page in <code>/src/main/.../resources/static/index.</code>
+          We will create now a simple HTML page in <code>src/main/resources/static/index.html</code> that streams the response body as it arrives.
         </p>
-        <pre class="code-block"><code class="language-java">
-@Service
-public class ImageService {
+        <pre class="code-block"><code class="language-html" v-pre>
+&lt;!DOCTYPE html
+&lt;html lang="en"&gt;
 
-  private final ClassPathResourceLoader loader = new ClassPathResourceLoader();
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Progressive Image Streaming&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding-top: 40px;
+        }
 
-  public byte[] load(String name) {
-    try (InputStream in = loader.getResource("images/" + name).getInputStream()) {
-      return in.readAllBytes();
-    } catch (IOException e) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Image not found", e);
-    }
-  }
-}
+        img {
+            max-width: 80%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;Progressive Image Streaming Demo&lt;/h1&gt;
+    &lt;img id="progressive" alt="streamed image"&gt;
+    &lt;script&gt;
+        const img = document.getElementById('progressive');
+        const chunks = [];
+        let currentBlobUrl = null;
+
+        fetch('/api/image/stream/knight.png')
+            .then(res => {
+                const reader = res.body.getReader();
+                
+                function read() {
+                    reader.read().then(({ done, value }) => {
+                        if (done) {
+                            // Final update with all chunks
+                            updateImage();
+                            return;
+                        }
+                        
+                        chunks.push(value);
+                        // Update image as chunks arrive
+                        setTimeout(() => updateImage(), 100);
+                        read();
+                    });
+                }
+                
+                function updateImage() {
+                    // Revoke previous blob URL to free memory
+                    if (currentBlobUrl) {
+                        URL.revokeObjectURL(currentBlobUrl);
+                    }
+                    
+                    // Create new blob from accumulated chunks
+                    const blob = new Blob(chunks, { type: 'image/png' });
+                    currentBlobUrl = URL.createObjectURL(blob);
+                    img.src = currentBlobUrl;
+                }
+                
+                read();
+            })
+            .catch(err => {
+                console.error('Error loading image:', err);
+            });
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
         </code></pre>
       </section>
 
       <section class="card">
-        <h3>Test</h3>
+        <h2>Validation</h2>
         <p>
-          You can run the application and test it using: <code>mvn spring-boot:run</code>
+          You can run the application and test it using: <code>mvn spring-boot:run</code> to validate the changes.
         </p>
-        <pre class="code-block"><code class="language-java">
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ImageControllerTest {
-
-  @Autowired
-  WebTestClient client;
-
-  @Test
-  void returnsFullImageWhenNoRange() {
-    client.get()
-      .uri("/assets/hero.jpg")
-      .exchange()
-      .expectStatus().isOk()
-      .expectHeader().contentType("image/jpeg")
-      .expectBody()
-      .consumeWith(result -&gt; assertThat(result.getResponseBody()).isNotEmpty());
-  }
-
-  @Test
-  void returnsPartialWhenRangeProvided() {
-    client.get()
-      .uri("/assets/hero.jpg")
-      .header("Range", "bytes=0-99")
-      .exchange()
-      .expectStatus().isPartialContent()
-      .expectHeader().valueEquals("Content-Range", "bytes 0-99/1024")
-      .expectBody()
-      .consumeWith(result -&gt; assertThat(result.getResponseBody()).hasSize(100));
-  }
-}
-        </code></pre>
+        
       </section>
 
       <section class="card">
-        <h3>Where to extend next</h3>
-        <ul class="next-steps">
-          <li>Add content negotiation for WebP/AVIF based on <code>Accept</code> header.</li>
-          <li>Push large assets through a non-blocking stack (Spring WebFlux) to avoid tying up threads.</li>
-          <li>Layer in ETags based on the backing store version or checksum.</li>
-          <li>Expose basic metrics: hit rate, average bytes served, and 206 vs 200 ratio.</li>
+        <p class="doc-links-label">Docs:</p>
+        <ul class="doc-links">
+          <li><a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-servlet/streaming.html" target="_blank" rel="noreferrer">Spring MVC streaming responses</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/getReader" target="_blank" rel="noreferrer">ReadableStream#getReader</a></li>
+          <li><a href="https://image.nuxt.com/" target="_blank" rel="noreferrer">Nuxt Image module docs</a></li>
         </ul>
       </section>
     </UContainer>
@@ -168,6 +204,7 @@ const checklist = [
 <style scoped>
 .article {
   padding: clamp(24px, 4vw, 64px) 0;
+  color: #f7f7ff;
 }
 
 .article-frame {
@@ -198,7 +235,7 @@ const checklist = [
 
 .lede {
   margin: 0;
-  color: var(--text-muted);
+  color: #e7edff;
   max-width: 780px;
 }
 
@@ -217,6 +254,26 @@ const checklist = [
   display: grid;
   gap: 12px;
   text-align: left;
+}
+
+.article p,
+.article li {
+  color: inherit;
+  text-align: left;
+}
+
+.article h1,
+.article h2,
+.article h3 {
+  color: inherit;
+}
+
+.article a {
+  color: #c8e3ff;
+}
+
+.article a:hover {
+  color: #e1ecff;
 }
 
 .checklist {
@@ -253,6 +310,43 @@ const checklist = [
   list-style: disc;
   padding-left: 20px;
   margin: 0;
-  color: var(--text-muted);
+  color: inherit;
+  display: grid;
+  gap: 6px;
+}
+
+.image-preview {
+  margin: 0;
+  background: #0b1a32;
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.image-preview__img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid #1f2d4a;
+}
+
+.image-preview figcaption {
+  font-size: 14px;
+  color: #c8d6f2;
+  text-align: left;
+}
+
+.doc-links-label {
+  margin: 4px 0 0;
+  color: inherit;
+}
+
+.doc-links {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+  display: grid;
+  gap: 6px;
 }
 </style>

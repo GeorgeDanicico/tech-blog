@@ -45,9 +45,11 @@
 }
 
 .blog-item__header {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; */
+  /* align-items: center; */
+  gap: 5px;
   color: var(--text-muted);
   font-size: 13px;
   letter-spacing: 0.01em;
