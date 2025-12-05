@@ -24,7 +24,14 @@ export default {
         outline: 'var(--outline)',
         'outline-strong': 'var(--outline-strong)',
         'text-strong': 'var(--text-strong)',
-        'text-muted': 'var(--text-muted)'
+        'text-muted': 'var(--text-muted)',
+        'card-start': 'rgba(5, 15, 31, 0.9)',
+        'card-end': 'rgba(10, 31, 58, 0.75)',
+        'image-glow': 'rgba(0, 220, 130, 0.18)',
+        'image-surface': 'rgba(10, 31, 58, 0.9)',
+        'experience-surface': 'rgba(255, 255, 255, 0.02)',
+        'logo-glow': 'rgba(0, 220, 130, 0.25)',
+        'logo-surface': 'rgba(5, 15, 31, 0.85)'
       },
       fontFamily: {
         sans: [
@@ -37,7 +44,10 @@ export default {
         ]
       },
       boxShadow: {
-        elevated: '0 25px 60px rgba(2, 6, 23, 0.65)'
+        elevated: '0 25px 60px rgba(2, 6, 23, 0.65)',
+        'elevated-strong': '0 22px 50px rgba(0, 0, 0, 0.45)',
+        experience: '0 15px 40px rgba(0, 0, 0, 0.25)',
+        logo: '0 10px 26px rgba(0, 0, 0, 0.35)'
       },
       borderRadius: {
         lg: 'var(--radius-lg)',
