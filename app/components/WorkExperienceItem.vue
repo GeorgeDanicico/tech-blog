@@ -1,6 +1,6 @@
 <template>
   <article
-    class="flex flex-col gap-3.5 p-[18px] rounded-md border border-(--outline) bg-experience-surface shadow-experience"
+    class="flex flex-col gap-3.5 p-[18px] rounded-md border border-(--outline) bg-experience-surface shadow-experience text-left"
   >
     <div class="flex items-center gap-3">
       <NuxtImg
@@ -13,9 +13,9 @@
       />
 
       <div class="grid gap-0.5 text-left">
-        <p class="m-0 font-bold text-lg text-text-strong">{{ props.company }}</p>
-        <p class="m-0 text-text-muted text-[15px]">{{ props.role }}</p>
-        <p class="m-0 text-accent font-semibold text-sm">{{ props.years }}</p>
+        <span class="m-0 font-bold text-lg text-text-strong">{{ props.company }}</span>
+        <span class="m-0 text-text-muted text-[15px]">{{ props.role }}</span>
+        <span class="m-0 text-accent font-semibold text-sm">{{ props.years }}</span>
       </div>
     </div>
 

@@ -1,23 +1,3 @@
-<script setup lang="ts">
-const navItems = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Blogs', to: '/blogs' }
-] as const
-
-const route = useRoute()
-
-const isActive = (path: string) => route.path === path
-
-const year = new Date().getFullYear()
-
-const navLinkClasses =
-  'px-[18px] py-2 rounded-full border border-transparent font-semibold tracking-[0.02em] text-text-muted transition-colors duration-200 hover:text-text-strong hover:border-white/20'
-const activeNavLinkClasses =
-  'text-text-strong bg-[color-mix(in_srgb,theme(colors.accent)_12%,transparent)] border-[color-mix(in_srgb,theme(colors.accent)_50%,transparent)]'
-const footerLinkClasses = 'text-text-muted transition-colors duration-200 hover:text-accent'
-</script>
-
 <template>
   <div class="flex min-h-screen flex-col text-text-strong">
     <header class="pointer-events-none mt-5 flex w-full justify-center bg-transparent z-50" aria-label="Primary">
@@ -57,3 +37,23 @@ const footerLinkClasses = 'text-text-muted transition-colors duration-200 hover:
     </footer>
   </div>
 </template>
+
+<script setup lang="ts">
+const navItems = [
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Blogs', to: '/blogs' }
+] as const
+
+const route = useRoute()
+
+const isActive = (path: string) => route.path === path
+
+const year = new Date().getFullYear()
+
+const navLinkClasses =
+  'px-[18px] py-2 rounded-full border border-transparent font-semibold tracking-[0.02em] text-text-muted transition-colors duration-200 hover:text-text-strong hover:border-white/20'
+const activeNavLinkClasses =
+  'text-text-strong bg-[color-mix(in_srgb,theme(colors.accent)_12%,transparent)] border-[color-mix(in_srgb,theme(colors.accent)_50%,transparent)]'
+const footerLinkClasses = 'text-text-muted transition-colors duration-200 hover:text-accent'
+</script>
