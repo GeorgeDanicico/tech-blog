@@ -58,6 +58,41 @@
         />
       </div>
     </UContainer>
+
+    <UContainer
+      class="mx-auto w-full max-w-[960px] rounded-lg border border-(--outline) bg-[radial-gradient(circle_at_15%_15%,rgba(0,220,130,0.14),transparent_45%),radial-gradient(circle_at_85%_20%,rgba(26,188,254,0.14),transparent_45%),theme(colors.glass)] p-[clamp(24px,4vw,48px)] shadow-elevated text-left"
+    >
+      <div class="grid gap-4">
+        <div class="flex items-center gap-2 text-[18px] font-bold text-text-strong">
+          <Icon name="mdi:flash-outline" size="18" />
+          <span>Skills & Toolbox</span>
+        </div>
+        <p class="m-0 max-w-[780px] text-text-muted">
+          The stack I reach for across backend, frontend, databases, and delivery.
+        </p>
+
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div
+            v-for="group in skillGroups"
+            :key="group.title"
+            class="rounded-md border border-(--outline) bg-[color-mix(in_srgb,theme(colors.surface)_85%,transparent)] p-4 shadow-sm"
+          >
+            <p class="m-0 mb-3 text-[15px] font-semibold text-text-strong tracking-[0.01em]">
+              {{ group.title }}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                v-for="skill in group.items"
+                :key="skill"
+                class="rounded-full border border-(--outline) bg-[rgba(255,255,255,0.04)] px-3 py-1 text-sm font-medium text-text-strong"
+              >
+                {{ skill }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </UContainer>
   </div>
 </template>
 
@@ -74,6 +109,30 @@ type WorkExperience = {
   highlights: string[]
 }
 
+type SkillGroup = {
+  title: string
+  items: string[]
+}
+
+const skillGroups: SkillGroup[] = [
+  {
+    title: 'Backend',
+    items: ['Java', 'Spring Boot', 'Quarkus']
+  },
+  {
+    title: 'Frontend',
+    items: ['Vue', 'Nuxt', 'React', 'Angular']
+  },
+  {
+    title: 'Data & Migrations',
+    items: ['MySQL', 'Couchbase', 'Liquibase']
+  },
+  {
+    title: 'Delivery & CI/CD',
+    items: ['Jenkins', 'Github Actions']
+  }
+]
+
 const experiences: WorkExperience[] = [
   {
     company: 'Betfair Romania Development',
@@ -85,6 +144,7 @@ const experiences: WorkExperience[] = [
       'Developed new features and offered maintenance for the owned services with the following technologies: Spring Boot, React, Angular, MySQL, and Couchbase.',
       'Led the migration of a microservice that sends messages to customers to a new Quarkus codebase, which uses MySQL for data storage and Couchbase for distributed caching.',
       'Worked with CI/CD pipelines, using Jenkins for handling continuous integration and GoCD for managing the delivery stages.',
+      'Used Liquibase for managing the MySQL database schema migrations',
       'Provided on‑call support for the team’s services.'
     ]
   },

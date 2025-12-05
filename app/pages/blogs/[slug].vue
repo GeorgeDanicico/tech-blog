@@ -16,17 +16,6 @@
           <p v-if="post?.description" class="m-0 text-text-muted">
             {{ post?.description }}
           </p>
-
-          <!-- <div v-if="doc.cover" class="overflow-hidden rounded-lg border border-(--outline)">
-            <NuxtImg
-              :src="post.cover"
-              :alt="doc.title"
-              width="1280"
-              height="720"
-              class="block h-auto w-full object-cover"
-              loading="lazy"
-            />
-          </div> -->
         </header>
 
         <div class="content-body grid gap-5 text-left">
