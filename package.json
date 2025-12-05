@@ -10,10 +10,12 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/content": "^3.9.0",
     "@nuxt/eslint": "^1.10.0",
     "@nuxt/icon": "^2.1.0",
     "@nuxt/image": "^2.0.0",
     "@nuxt/ui": "^4.2.1",
+    "better-sqlite3": "^12.5.0",
     "eslint": "^9.39.1",
     "nuxt": "^4.2.1",
     "typescript": "^5.9.3",
