@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: about
+description: Experience and skills of George Danicico, a software engineer working with Java and Spring Boot.
+---
+<p>I'm a full stack engineer focused on Java and Spring Boot, and I enjoy frontend and DevOps work too.</p>
+
+<h2>experience</h2>
+{%- for job in resume.experience %}
+<h3>{{ job.role }} @ {{ job.company }}</h3>
+<p class="meta">{{ job.years }}</p>
+<ul>
+  {%- for point in job.highlights %}
+  <li>{{ point }}</li>
+  {%- endfor %}
+</ul>
+{%- endfor %}
+
+<h2>skills</h2>
+<dl class="skills">
+  {%- for group in resume.skills %}
+  <div><dt>{{ group.area }}</dt><dd>{{ group.items | join(", ") }}</dd></div>
+  {%- endfor %}
+</dl>

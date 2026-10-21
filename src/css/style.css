@@ -1,0 +1,352 @@
+:root {
+  --bg: #fbfbfa;
+  --text: #1f2328;
+  --muted: #6e7781;
+  --faint: #afb8c1;
+  --accent: #0969da;
+  --border: #d8dee4;
+  --code-bg: #f3f4f6;
+  --tok-comment: #6e7781;
+  --tok-keyword: #cf222e;
+  --tok-string: #0a3069;
+  --tok-function: #8250df;
+  --tok-number: #0550ae;
+  --font: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --faint: #484f58;
+    --accent: #58a6ff;
+    --border: #30363d;
+    --code-bg: #161b22;
+    --tok-comment: #8b949e;
+    --tok-keyword: #ff7b72;
+    --tok-string: #a5d6ff;
+    --tok-function: #d2a8ff;
+    --tok-number: #79c0ff;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 50rem;
+  padding: 0 1rem;
+  background: var(--bg);
+  color: var(--text);
+  font: 0.9375rem/1.75rem var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Top and bottom bars, like an editor's tab bar and status bar */
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding: 1rem 0;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+header.bar {
+  border-bottom: 1px solid var(--border);
+}
+
+footer.bar {
+  margin-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.bar nav,
+.bar span:last-child {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.bar a {
+  color: var(--muted);
+}
+
+.bar a[aria-current='page'] {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.4rem;
+}
+
+/* Content with a line-number gutter. Each block gets one number. */
+.lines {
+  counter-reset: line;
+  padding: 1.5rem 0 0 3rem;
+}
+
+.lines :where(h1, h2, h3, p, li, pre, dl > div, .comments) {
+  position: relative;
+  counter-increment: line;
+}
+
+.lines :where(h1, h2, h3, p, li, pre, dl > div, .comments)::after {
+  content: counter(line);
+  position: absolute;
+  top: 0;
+  right: calc(100% + 1.25rem);
+  font-size: 0.75rem;
+  line-height: inherit;
+  color: var(--faint);
+  user-select: none;
+}
+
+.lines pre::after {
+  top: 0.75rem;
+  line-height: 1.5rem;
+}
+
+h1,
+h2,
+h3 {
+  margin: 2rem 0 0.75rem;
+  font-weight: 600;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.375rem;
+  line-height: 2.25rem;
+}
+
+h2 {
+  font-size: 1.0625rem;
+  line-height: 2rem;
+}
+
+h3 {
+  margin-top: 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.75rem;
+}
+
+h1::before,
+h2::before,
+h3::before {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+h1::before {
+  content: '# ' / '';
+}
+
+h2::before {
+  content: '## ' / '';
+}
+
+h3::before {
+  content: '### ' / '';
+}
+
+/* The blinking insertion point, timed like the macOS text caret */
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 0.25rem;
+  vertical-align: -0.15em;
+  background: var(--accent);
+  animation: blink 1.06s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+.meta,
+.muted,
+time {
+  color: var(--muted);
+}
+
+.meta {
+  font-size: 0.8125rem;
+}
+
+h3 + .meta {
+  margin-top: -0.75rem;
+}
+
+ul {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+ul > li {
+  padding-left: 1.25rem;
+}
+
+ul > li::before {
+  content: '- ' / '';
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+
+ol {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style-position: inside;
+}
+
+ul.posts > li {
+  padding-left: 0;
+}
+
+ul.posts > li::before {
+  content: none;
+}
+
+ul.posts time {
+  margin-right: 1rem;
+}
+
+.skills {
+  margin: 0;
+}
+
+.skills > div {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+}
+
+.skills dt {
+  color: var(--muted);
+}
+
+.skills dd {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 28rem;
+  width: auto;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+code {
+  font-family: var(--font);
+  font-size: 0.875em;
+}
+
+:not(pre) > code {
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--code-bg);
+}
+
+pre {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--code-bg);
+  font-size: 0.8125rem;
+  line-height: 1.5rem;
+}
+
+/* Scroll the code, not the pre, so the gutter number outside the pre isn't clipped */
+pre code {
+  display: block;
+  overflow-x: auto;
+  font-size: inherit;
+}
+
+/* Prism tokens from the syntax highlight plugin */
+.token.comment,
+.token.prolog,
+.token.doctype {
+  color: var(--tok-comment);
+  font-style: italic;
+}
+
+.token.keyword,
+.token.tag,
+.token.selector,
+.token.important {
+  color: var(--tok-keyword);
+}
+
+.token.string,
+.token.attr-value,
+.token.char {
+  color: var(--tok-string);
+}
+
+.token.function,
+.token.class-name,
+.token.annotation,
+.token.attr-name {
+  color: var(--tok-function);
+}
+
+.token.number,
+.token.boolean,
+.token.constant,
+.token.property {
+  color: var(--tok-number);
+}
+
+.token.punctuation,
+.token.operator {
+  color: var(--muted);
+}
+
+@media (max-width: 40rem) {
+  .lines {
+    padding-left: 2rem;
+  }
+
+  .lines :where(h1, h2, h3, p, li, pre, dl > div, .comments)::after {
+    right: calc(100% + 0.75rem);
+  }
+
+  .skills > div {
+    grid-template-columns: 1fr;
+  }
+}

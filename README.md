@@ -1,75 +1,50 @@
-# Nuxt Minimal Starter
+# tech-blog
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+My personal blog, built with [Eleventy](https://www.11ty.dev/) and hosted on GitHub Pages at
+https://georgedanicico.github.io/tech-blog/.
 
-## Setup
-
-Make sure to install dependencies:
+## Run locally
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+npm start
 ```
 
-## Development Server
+Then open http://localhost:8080/tech-blog/.
 
-Start the development server on `http://localhost:3000`:
+## Write a post
 
-```bash
-# npm
-npm run dev
+Add a Markdown file to `src/posts/`. The file name becomes the URL (`src/posts/my-post.md` → `/posts/my-post/`).
 
-# pnpm
-pnpm dev
+```markdown
+---
+title: My post
+description: One sentence for the meta description.
+date: 2026-01-31
+readTime: 4 min read
+---
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
+Post content…
 ```
 
-## Production
+Put images in `src/images/` and link them as `/images/...`.
 
-Build the application for production:
+## Edit the about page
 
-```bash
-# npm
-npm run build
+Experience and skills live in `src/_data/resume.js`. Site title, nav, and social links live in `src/_data/site.js`.
 
-# pnpm
-pnpm build
+## Comments
 
-# yarn
-yarn build
+Comments use [giscus](https://giscus.app), which stores them in this repo's GitHub Discussions.
 
-# bun
-bun run build
-```
+1. Enable Discussions in the repo settings.
+2. Install the [giscus app](https://github.com/apps/giscus) on this repo.
+3. On https://giscus.app, pick this repo and the Announcements category, then copy `data-repo-id` and
+   `data-category-id` into `giscus` in `src/_data/site.js`.
 
-Locally preview production build:
+Comments stay hidden until both IDs are set.
 
-```bash
-# npm
-npm run preview
+## Deploy
 
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and publishes `_site` to GitHub Pages.
+In the repo settings, set Pages → Build and deployment → Source to **GitHub Actions**.
