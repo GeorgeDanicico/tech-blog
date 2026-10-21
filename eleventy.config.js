@@ -26,6 +26,6 @@ export const config = {
   },
   // Keep "{{ }}" inside code samples in posts as literal text.
   markdownTemplateEngine: false,
-  // The site is served from https://georgedanicico.github.io/tech-blog/
-  pathPrefix: '/tech-blog/'
+  // GitHub Pages serves the site from /tech-blog/; Vercel previews serve it from the root.
+  pathPrefix: process.env.VERCEL ? '/' : '/tech-blog/'
 }
