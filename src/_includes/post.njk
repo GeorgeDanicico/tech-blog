@@ -1,0 +1,8 @@
+---
+layout: base.njk
+---
+<p class="meta"><time datetime="{{ page.date | isoDate }}">{{ page.date | isoDate }}</time>{% if readTime %} · {{ readTime }}{% endif %}</p>
+
+{{ content | safe }}
+
+{% include "comments.njk" %}

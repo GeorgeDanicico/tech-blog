@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta property="og:title" content="{{ title or site.title }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="bar">
+    <span class="path">~/george{{ file or (page.filePathStem + ".md") }}</span>
+    <nav aria-label="Main">
+      {%- for item in site.nav %}
+      {%- set active = page.url == item.url or (item.url != "/" and page.url.startsWith(item.url)) %}
+      <a href="{{ item.url }}"{% if active %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {%- endfor %}
+    </nav>
+  </header>
+
+  <main class="lines">
+    <h1>{{ heading or title }}<span class="caret" aria-hidden="true"></span></h1>
+    {{ content | safe }}
+  </main>
+
+  <footer class="bar">
+    <span>© {{ currentYear }} George Danicico</span>
+    <span>
+      {%- for link in site.links %}
+      <a href="{{ link.url }}" rel="noopener">{{ link.label }}</a>
+      {%- endfor %}
+    </span>
+  </footer>
+</body>
+</html>

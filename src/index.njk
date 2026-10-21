@@ -1,0 +1,22 @@
+---
+layout: base.njk
+heading: George Danicico
+---
+<p>Software engineer working mostly with Java and Spring Boot, with a soft spot for frontend and DevOps. I write here about what I learn.</p>
+
+<h2>posts</h2>
+<ul class="posts">
+  {%- for post in collections.posts.slice(0, 5) %}
+  <li><time datetime="{{ post.date | isoDate }}">{{ post.date | isoDate }}</time> <a href="{{ post.url }}">{{ post.data.title }}</a></li>
+  {%- endfor %}
+</ul>
+{%- if collections.posts.length > 5 %}
+<p><a href="/posts/">all posts →</a></p>
+{%- endif %}
+
+<h2>elsewhere</h2>
+<p>
+  {%- for link in site.links %}
+  <a href="{{ link.url }}" rel="noopener">{{ link.label }}</a>{% if not loop.last %} <span class="muted">·</span>{% endif %}
+  {%- endfor %}
+</p>
